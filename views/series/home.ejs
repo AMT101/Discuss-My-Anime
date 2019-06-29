@@ -1,0 +1,27 @@
+<% include ../partials/header %>
+
+	<div class="container outermostContainer">
+		<div class="row">
+			<% animes.forEach(function(anime){ %>
+				<div class = "col col-md-4 d-flex align-items-stretch">
+					<div class="card" style="width: 18rem;">
+						<img src="<%= anime.image %>" class="card-img-top" alt="<%= anime.name %>">
+						<div class="card-body">
+							<h5 class="card-title"><%= anime.name %></h5>
+							<p class="card-text"><%= anime.gist %></p>
+							<a href="/anime/<%= anime._id %>" class="btn btn-primary">Participate</a>
+							<% if(currentUser){ %>
+								<% if(currentUser._id.equals(anime.author.id)){ %>
+									<form id="delete-form" action="/anime/<%= anime._id %>?_method=DELETE" method="POST">
+		              	<button class="btn btn-xs btn-danger">Delete</button>
+		              </form>
+								<% } %>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			<% }); %>
+		</div>
+	</div>
+
+<% include ../partials/footer %>
