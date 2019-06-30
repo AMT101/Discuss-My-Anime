@@ -2,18 +2,29 @@
 
 <div class="container content">
   <div class="container outermostContainer profileContainer">
-    <img src="<%= user.thumbnail %>" alt="Profile picture" class="profile-picture">
-    <h1 class="username">Hi! <%= user.username %></h1>
+    <div class="row">
+      <div class="col col-md-4 profile-info">
+        <p>NAME: <span class="blank"><%= user.username %></span></p>
+        <p>AGE: <span class="blank">No Idea</span></p>
+        <p>OCCUPATION: <span class="blank">Nope...</span></p>
+        <p>VALUABLE: <span class="blank">Yes</span></p>
+        <p>PERSONALITY: <span class="blank">Not zero</span></p>
+      </div>
+      <div class="col col-md-8 d-flex">
+        <img src="<%= user.thumbnail %>" alt="Profile picture" class="profile-picture">
+      </div>
+    </div>
   </div>
 
   <div class="container created-posts">
     <h1 class="title MyPosts">My Posts</h1>
-
+    <div class="container prof-posts">
       <% user.posts.forEach((post)=>{ %>
           <div class="SinglePost">
             <p><%= post.name %></p>
           </div>
       <% }); %>
+    </div>
   </div>
 </div>
 
