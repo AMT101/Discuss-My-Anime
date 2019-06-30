@@ -1,12 +1,20 @@
 <% include ../partials/header %>
 
-<div class="container outermostContainer">
-  <img src="<%= user.thumbnail %>" alt="Profile picture" class="profile-picture">
-  <h1 class="username">Hi! <%= user.username %></h1>
-</div>
+<div class="container content">
+  <div class="container outermostContainer profileContainer">
+    <img src="<%= user.thumbnail %>" alt="Profile picture" class="profile-picture">
+    <h1 class="username">Hi! <%= user.username %></h1>
+  </div>
 
-<div class="container">{
-  <!-- write code -->
-}
+  <div class="container created-posts">
+    <h1 class="title MyPosts">My Posts</h1>
+
+      <% user.posts.forEach((post)=>{ %>
+          <div class="SinglePost">
+            <p><%= post.name %></p>
+          </div>
+      <% }); %>
+  </div>
+</div>
 
 <% include ../partials/footer %>

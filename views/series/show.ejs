@@ -1,30 +1,32 @@
 <% include ../partials/header %>
 
-<div class="container outermostContainer imageContainer">
-	<img src="<%= anime.image %>" class="shownImage">
-</div>
+<div class="container content">
+	<div class="container outermostContainer imageContainer">
+		<img src="<%= anime.image %>" class="shownImage">
+	</div>
 
-<div class="container description">
-	<h1><%= anime.name %></h1>
-	<p><%= anime.description %></p>
-</div>
+	<div class="container description">
+		<h1 class="title"><%= anime.name %></h1>
+		<p class="pDescription"><%= anime.description %></p>
+	</div>
 
-<div class="container">
-	<a href="/anime/<%= anime._id %>/chats/new" class="btn btn-outline-warning btn-sm">Add To Chats</a>
-	<% if(currentUser){ %>
-		<% if(currentUser._id.equals(anime.author.id)){ %>
-			<a href="/anime/<%= anime._id %>/edit" class="btn btn-outline-primary btn-sm">Edit Post</a>
+	<div class="container buttonsContainer">
+		<a href="/anime/<%= anime._id %>/chats/new" class="btn btn-success">Add To Chats</a>
+		<% if(currentUser){ %>
+			<% if(currentUser._id.equals(anime.author.id)){ %>
+				<a href="/anime/<%= anime._id %>/edit" class="btn btn-primary edit-post-btn">Edit Post</a>
+			<% } %>
 		<% } %>
-	<% } %>
-</div>
+	</div>
 
-<div class="container chats">
-	<% anime.chats.forEach(function(chat){ %>
-		<div class="singleChat">
-			<p><strong><%= chat.author.username %></strong></p>
-			<p class="singleChatText"><%= chat.text %></p>
-		</div>
-	<% }) %>
+	<div class="container chats">
+		<% anime.chats.forEach(function(chat){ %>
+			<div class="singleChat">
+				<p><strong><%= chat.author.username %></strong></p>
+				<p class="singleChatText"><%= chat.text %></p>
+			</div>
+		<% }) %>
+	</div>
 </div>
 
 <% include ../partials/footer %>

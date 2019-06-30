@@ -45,7 +45,7 @@ const authRoutes = require("./routes/auth-routes");
 const profileRoutes = require("./routes/profile-routes");
 
 
-app.use(function(req, res, next){
+app.use((req, res, next)=>{
    res.locals.currentUser = req.user;
 	 next();
 });

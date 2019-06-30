@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const User = require("../models/user-model");
 
 const authCheck = (req, res, next)=>{
   if(!req.user){
@@ -12,7 +13,17 @@ const authCheck = (req, res, next)=>{
 };
 
 router.get("/", authCheck, (req, res)=>{
-  res.render("./profile/profile", {user: req.user});
+
+    console.log(req.user);
+  	User.findById(req.user._id).populate("posts").exec((err, foundUser)=>{
+    // (req.user).populate("posts").exec((err, foundUser)=>{
+        if(err){
+          console.log(err);
+        }
+        else{
+          res.render("./profile/profile", {user: foundUser});
+        }
+    })
 });
 
 module.exports = router;

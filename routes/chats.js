@@ -6,12 +6,13 @@ const middleware = require("../middleware/index");
 
 //NEW CHAT - form to write the comment
 router.get("/anime/:id/chats/new", middleware.isLoggedIn, (req, res)=>{
-	Series.findById(req.params.id, (err, foundAnime)=>{
+	Series.findById(req.params.id).populate("chats").exec((err, foundAnime)=>{
 		if(err){
 			console.log(err);
 		}
 		else{
-			res.render("chats/new", {anime: foundAnime, user: req.user});
+			var len = foundAnime.chats.length;
+			res.render("chats/new", {anime: foundAnime, user: req.user, lastChat: foundAnime.chats[len - 1]});
 		}
 	});
 });
@@ -27,7 +28,7 @@ router.post("/anime/:id/chats", middleware.isLoggedIn, (req, res)=>{
 				chat.author.id = req.user._id;
 				chat.author.username = req.user.username;
 				chat.save();
-				
+
 				foundAnime.chats.push(chat);
 				foundAnime.save();
 				res.redirect("/anime/" + req.params.id);

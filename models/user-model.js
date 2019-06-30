@@ -5,9 +5,12 @@ const userSchema = Schema({
   username: String,
   googleId: String,
   thumbnail: String,
-  // posts:[
-  //
-  // ]
+  posts:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Series"
+    }
+  ]
 });
 
 const User = mongoose.model("User", userSchema);

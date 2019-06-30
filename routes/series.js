@@ -2,6 +2,7 @@ const express = require("express");
 const router  = express.Router();
 const Series = require("../models/series");
 const Chat = require("../models/chats");
+const User = require("../models/user-model");
 const middleware = require("../middleware/index");
 
 router.get("/", (req, res)=>{
@@ -38,6 +39,9 @@ router.post("/anime", middleware.isLoggedIn, (req, res)=>{
 						newlyCreated.author.username = req.user.username;
 						newlyCreated.save();
 
+						req.user.posts.push(newlyCreated);
+						req.user.save();
+
             res.redirect("/anime");
         }
     });
@@ -57,7 +61,7 @@ router.get("/anime/:id", (req, res)=>{
 
 //DELETE - delete a post from the database
 router.delete("/anime/:id", (req, res)=>{
-	Series.findOneAndDelete(req.params.id, (err, foundAnime)=>{
+	Series.findByIdAndRemove(req.params.id, (err, foundAnime)=>{
 		if(err){
 			res.redirect("/anime");
 		}

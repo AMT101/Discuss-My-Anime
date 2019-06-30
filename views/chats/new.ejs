@@ -1,22 +1,31 @@
 <% include ../partials/header %>
 
-<div class="container create-form outermostContainer">
-    <div class="row">
-		<div class="col">
-			<h1 style="text-align: center">CREATE <span class="nonWhite">A</span> NEW <span class="nonWhite">ANIME</span> DISCUSSION</h1>
-			<div style="width: 35%; margin: 25px auto;">
-				<form action="/anime/<%= anime._id %>/chats" method="POST">
-					<div class="form-group">
-						<input class="form-control" type="text" name="chat[text]" placeholder="Speak your mind...">
-					</div>
-					<div class="form-group">
-						<button class="btn btn-lg btn-outline-primary btn-block">Submit!</button>
-					</div>
-				</form>
-				<a href="/anime/<%= anime._id %>">Go Back</a>
-			</div>
-		</div>
-    </div>
+<div class="container content">
+  <div class="container outermostContainer" id="chat-form">
+      <div class="row">
+  		<div class="col">
+  			<h1 style="text-align: center" class="title">CREATE <span class="nonWhite">A</span> NEW <span class="nonWhite">ANIME</span> DISCUSSION</h1>
+  			<div style="width: 35%; margin: 25px auto;">
+  				<form action="/anime/<%= anime._id %>/chats" method="POST">
+  					<div class="form-group">
+  						<textarea rows="5" class="form-control" type="text" name="chat[text]" placeholder="Speak your mind..."></textarea>
+  					</div>
+  					<div class="form-group">
+  						<button class="btn btn-lg btn-primary btn-block">Submit!</button>
+  					</div>
+  				</form>
+  				<a href="/anime/<%= anime._id %>">Go Back</a>
+  			</div>
+  		</div>
+      </div>
+  </div>
+  <div class="container previous-chat">
+    <% if(lastChat){ %>
+      <h1 class="title lastTitle">Last Chat</h1>
+      <p><strong><%= lastChat.author.username %></strong></p>
+      <p><%= lastChat.text %></p>
+    <% } %>
+  </div>
 </div>
 
 <% include ../partials/footer %>
