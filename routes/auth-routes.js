@@ -21,7 +21,7 @@ router.get("/google", passport.authenticate("google", {
 //callback call for google to redirect to
 router.get("/google/redirect", passport.authenticate("google"), (req, res)=>{
 	// res.send(req.user);
-	res.redirect("back");
+	res.redirect("/anime");
 });
 
 module.exports = router;
