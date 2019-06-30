@@ -49,7 +49,7 @@ app.use((req, res, next)=>{
    res.locals.currentUser = req.user;
 	 next();
 });
-
+	
 app.use(seriesRoutes);
 app.use(chatsRoutes);
 app.use("/auth", authRoutes);
