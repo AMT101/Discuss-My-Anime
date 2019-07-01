@@ -121,8 +121,8 @@ body{
 }
 
 .post-image{
-	width: 60%;
-	height: 50%;
+	width: 80%;
+	height: 80%;
 	object-fit: cover;
 	display: inline-block;
 	margin-bottom: 24px;

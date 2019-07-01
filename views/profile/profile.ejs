@@ -19,18 +19,18 @@
   <div class="container created-posts">
     <h1 class="title MyPosts">My Posts</h1>
     <div class="container prof-posts">
-      <div class="row">
         <% user.posts.forEach((post)=>{ %>
-            <div class="SinglePost">
-              <div class="col col-md-4 profile-info">
-                <img src="<%= post.image %>" class="post-image">
-              </div>
-              <div class="col col-md-8">
-                <p><%= post.name %></p>
-              </div>
+          <div class="row SinglePost">
+            <div class="col col-md-4 profile-info">
+              <img src="<%= post.image %>" class="post-image">
             </div>
+            <div class="col col-md-8">
+              <p><%= post.name %></p>
+              <p><%= post.gist %></p>
+              <a href="/anime/<%= post._id %>" class="btn btn-primary">Go to Post</a>
+            </div>
+          </div>
         <% }); %>
-      </div>
     </div>
   </div>
 </div>
