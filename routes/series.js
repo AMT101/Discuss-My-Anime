@@ -80,8 +80,16 @@ router.get("/anime/:id/edit", middleware.checkPostOwnership, (req, res)=>{
 });
 
 //UPDATE post
-router.put("anime/:id", middleware.checkPostOwnership, (req, res)=>{
-	res.send("To update the post you have come to me");
+router.put("/anime/:id", middleware.checkPostOwnership, (req, res)=>{
+	Series.findByIdAndUpdate(req.params.id, req.body.anime, (err, updatedAnime)=>{
+		if(err){
+    	res.redirect("/anime");
+   	}
+		else {
+			//redirect to show page
+			res.redirect("/anime/" + req.params.id);
+   	}
+	});
 });
 
 module.exports = router;
