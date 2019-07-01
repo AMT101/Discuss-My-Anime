@@ -10,7 +10,7 @@
         <p>VALUABLE: <span class="blank">Yes</span></p>
         <p>PERSONALITY: <span class="blank">Not zero</span></p>
       </div>
-      <div class="col col-md-8 d-flex">
+      <div class="col col-md-8">
         <img src="<%= user.thumbnail %>" alt="Profile picture" class="profile-picture">
       </div>
     </div>
@@ -19,11 +19,18 @@
   <div class="container created-posts">
     <h1 class="title MyPosts">My Posts</h1>
     <div class="container prof-posts">
-      <% user.posts.forEach((post)=>{ %>
-          <div class="SinglePost">
-            <p><%= post.name %></p>
-          </div>
-      <% }); %>
+      <div class="row">
+        <% user.posts.forEach((post)=>{ %>
+            <div class="SinglePost">
+              <div class="col col-md-4 profile-info">
+                <img src="<%= post.image %>" class="post-image">
+              </div>
+              <div class="col col-md-8">
+                <p><%= post.name %></p>
+              </div>
+            </div>
+        <% }); %>
+      </div>
     </div>
   </div>
 </div>

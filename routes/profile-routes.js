@@ -14,7 +14,7 @@ const authCheck = (req, res, next)=>{
 
 router.get("/", authCheck, (req, res)=>{
 
-    console.log(req.user);
+    // console.log(req.user);
   	User.findById(req.user._id).populate("posts").exec((err, foundUser)=>{
     // (req.user).populate("posts").exec((err, foundUser)=>{
         if(err){
