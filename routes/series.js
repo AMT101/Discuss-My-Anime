@@ -15,9 +15,9 @@ router.get("/anime", (req, res)=>{
        if(err){
         console.log(err);
        }
-			 else {
-			   // console.log(allAnime);
-			   res.render("series/home",{animes:allAnime});
+	   else {
+		// console.log(allAnime);
+		res.render("series/home",{animes:allAnime});
        }
     });
 });
